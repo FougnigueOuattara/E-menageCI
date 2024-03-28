@@ -12,9 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->uuid('id')->primary();
+            $table->string('firstName');
+            $table->string('lastName');
             $table->string('email')->unique();
+            $table->integer('age');
+            $table->string('gender',2);
+            $table->string('phoneNumber');
+            $table->string('nationnality')->nullable();
+            $table->string('city');
+            $table->string('quarter');
+            $table->string('photo');
+            $table->string('staff');
+            $table->boolean('etat');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

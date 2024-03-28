@@ -3,47 +3,26 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-        
+        <title>{{env('APP_NAME')}}</title>
         <!-- Styles -->
-        @livewireStyles
         @vite('resources/css/app.css')
         <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        @livewireStyles
     </head>
-    <body class="box-border bg-amber-50">
+    <body class="box-border bg-blue-50">
         <!-- Navbar menu -->
-        <header class="max-w-full bg-transparent h-14 px-44">
-            <nav class="flex items-center justify-between w-full h-full bg-transparent">
-                <div><img class="w-full h-9" src="/storage/images/EmenageLogo.svg"></div>
-                <button type="button" class="flex flex-col items-center lg:hidden justify-around w-8 h-6 cursor-pointer" x-data="{open:true}" @click="open =! open">
-                    <span class="block h-1 bg-orange-400 rounded-lg w-7" :class="open ? '' : ['rotate-45','translate-y-2','transition-all','duration-500'] "></span>
-                    <span class="block h-1 bg-orange-400 rounded-lg w-7" :class="open ? '' : ['opacity-0','transition-opacity','duration-500']"></span>
-                    <span class="block h-1 bg-orange-400 rounded-lg w-7" :class="open ? '' : ['-rotate-45','-translate-y-2','transition-all','duration-500'] "></span>
-                </button>
-                <ul class="flex justify-end w-2/3 text-slate-900">
-                    <li class="mx-3"><a href="http://">Personnels bâtiment</a></li>
-                    <li class="mx-3"><a href="http://">Cuisinier</a></li>
-                    <li class="mx-3"><a href="http://">Menagere </a></li>
-                    <li class="mx-3"><a href="http://">Nounou</a></li>
-                    <li class="mx-3"><a href="http://">Se connecter</a></li>
-                    <li class="mx-3"><a href="http://"><img src="/storage/images/pngegg.png" class="w-5 h-5"></a></li>
-                </ul>
-            </nav>
-        </header>
-            <main class="w-full px-44">
-                <section class="w-full h-screen bg-right bg-no-repeat bg-contain" style="background-image: url('/storage/images/pngwing.com.png')">
+            <x-header/>
+            <main class="w-full  px-32">
+                <section class="w-full h-screen bg-right bg-no-repeat bg-contain" style="background-image: url('/storage/images/bg.svg')">
                     <div class="flex items-center justify-between pt-6 h-4/5">
                         <div class="flex flex-col justify-around h-96">
-                            <div>
+                            <div>  
                                 <h1 class="font-semibold text-9xl text-slate-900">{{env('APP_NAME')}}</h1>
                                 <h2 class="mt-3 ml-2 text-6xl font-medium text-orange-400">Full Services</h2>
                             </div>
                             <button type="button" class="ml-2 text-xl text-white transition duration-500 ease-in-out bg-orange-500 border-2 border-none rounded-full w-72 h-14 hover:-translate-y-1 hover:scale-110 hover:ring-2 hover:bg-transparent hover:text-orange-500 ring-orange-600"><a href="#service-section">Decouvrir nos services</a></button>
                         </div>
-                    </div>
-                    
                     </div>
                 </section>
                 <!-- Good to know section -->
@@ -78,16 +57,16 @@
                     </div>
                 </section>
                 <!-- services section -->
-                <section class="flex flex-col w-full h-screen px-3" id="service-section">
+                <section class="flex flex-col w-full min-h-screen px-3" id="service-section">
                     <div class="flex h-full flex-col justify-evenly items-center w-full">
-                        <div class="w-auto">
-                            <h2 class="text-3xl font-medium text-slate-900">Services</h2>
+                        <div class="w-auto mb-8">
+                            <h2 class="text-4xl font-medium text-slate-900">Services</h2>
                         </div>
-                        <div class="w-full h-5/6 grid grid-cols-4 grid-rows-2 gap-4">
+                        <div class="w-full h-5/6 grid md:grid-cols-4 md:grid-rows-2 gap-4">
                             <div class="bg-gray-300 flex flex-col items-center justify-between rounded-xl overflow-hidden">
                                 <div class="w-full h-3/5 "><img src="/storage/images/vitrier.jpg" class=" w-full h-full object-cover"></div>
                                 <p class="text-slate-900 font-base">Vitrier</p>
-                                <div><button type="button" class="text-white transition duration-500 ease-in-out bg-orange-500 border-2 border-none rounded-full hover:-translate-y-1 hover:scale-110 hover:ring-2 hover:bg-transparent hover:text-orange-500 ring-orange-600 h-8 w-32 mb-4">Consulter</button></div>
+                                <div><button type="button" class="text-white transition duration-500 ease-in-out bg-orange-500 border-2 border-none rounded-full hover:-translate-y-1 hover:scale-110 hover:ring-2 hover:bg-transparent hover:text-orange-500 ring-orange-600 h-8 w-32 mb-4"><a href="{{ url('/personnels/vitriers') }}">Consulter</a></button></div>
                             </div>
                             <div class="bg-gray-300 flex flex-col items-center justify-between rounded-xl overflow-hidden">
                                 <div class="w-full h-3/5"><img src="/storage/images/electricien.jpg" class=" w-full h-full object-cover"></div>
@@ -119,40 +98,15 @@
                                 <p class="text-slate-900 font-base">Nounou</p>
                                 <div><button type="button" class="text-white transition duration-500 ease-in-out bg-orange-500 border-2 border-none rounded-full hover:-translate-y-1 hover:scale-110 hover:ring-2 hover:bg-transparent hover:text-orange-500 ring-orange-600 h-8 w-32 mb-4">Consulter</button></div>
                             </div>
+                            <div class="bg-gray-300 flex flex-col items-center justify-between rounded-xl overflow-hidden">
+                                <div class="w-full h-3/5"><img src="/storage/images/cuisinier.jpg" class=" w-full h-full object-cover"></div>
+                                <p class="text-slate-900 font-base">Cuisinier</p>
+                                <div><button type="button" class="text-white transition duration-500 ease-in-out bg-orange-500 border-2 border-none rounded-full hover:-translate-y-1 hover:scale-110 hover:ring-2 hover:bg-transparent hover:text-orange-500 ring-orange-600 h-8 w-32 mb-4">Consulter</button></div>
+                            </div>
                         </div>
                     </div>
                 </section>
             </main>
-        <footer class="w-full h-96 bg-slate-900 py-3 pt-10 flex flex-col mt-10">
-            <div class="w-full h-4/5 grid grid-cols-3 gap-x-6 ">
-                <div class="h-full flex flex-col justify-between items-center">
-                    <div class="w-full h-1/6"><img class="w-full h-8" src="/storage/images/EmenageLogoFooter.svg"></div>
-                    <p class="w-2/3 h-5/6 text-justify text-gray-200">
-                        Nous vous offrons tous les services à un même endroit et ce avec des personnes qualifiées.
-                        Visiter leurs profils, puis demander leurs services en cas de besoin !
-                    </p>
-                </div>
-                <div class="h-full flex flex-col justify-center items-center">
-                    <p class="w-full h-1/6 text-white text-center text-xl font-medium">Liens</p>
-                    <div class="w-2/3 h-5/6 pl-24 list-none text-gray-300 fkex flex-col items-center justify-center">
-                        <li class="mx-3"><a href="http://">Personnels bâtiment</a></li>
-                        <li class="mx-3"><a href="http://">Cuisinier</a></li>
-                        <li class="mx-3"><a href="http://">Menagere </a></li>
-                        <li class="mx-3"><a href="http://">Nounou</a></li>
-                    </div>
-                </div>
-                <div class="h-full flex flex-col items-center">
-                    <p class="w-full h-1/6 text-white text-center text-xl font-medium">Contact</p>
-                    <div class="w-2/3 h-5/6 text-gray-300">
-                        Nous vous offrons tous les services à un même endroit et ce avec des personnes qualifiées.
-                        Visiter leurs profils, puis demander leurs services en cas de besoin !
-                    </div>
-                </div>
-            </div>
-            <div class="w-full h-1/5 flex flex-col items-center justify-center">
-                <p class="text-gray-200">E-menage &copy; <?= date('Y')  ?> Copyright </p>
-            </div>
-        </footer>
-        @livewireScripts
+            <x-footer/>
     </body>
 </html>
