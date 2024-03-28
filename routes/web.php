@@ -95,10 +95,10 @@ Route::group(["prefix" => "personnels"], function(){
     Route::group(["prefix" => "cuisiniers"], function(){
 
         /// Affiche la liste des cuisiniers
-        Route::get('/',[\App\Http\Controllers\UserController::class,'CuisinierIndex']);
+        Route::get('/',[\App\Http\Controllers\CuisinierController::class,'index']);
 
         /// Affiche la page des cuisiniers et liste ces derniers en fonction de la ville ou le quartier
-        Route::get('/search',[\App\Http\Controllers\UserController::class,'searchCuisinier']);
+        Route::get('/search',[\App\Http\Controllers\CuisinierController::class,'search']);
 
     });
 
@@ -106,10 +106,10 @@ Route::group(["prefix" => "personnels"], function(){
     Route::group(["prefix" => "menagers"], function(){
 
         /// Affiche la liste des menagers
-        Route::get('/',[\App\Http\Controllers\UserController::class,'MenagerIndex']);
+        Route::get('/',[\App\Http\Controllers\MenagerController::class,'index']);
 
         /// Affiche la page des menagers et liste ces derniers en fonction de la ville ou le quartier
-        Route::get('/search',[\App\Http\Controllers\UserController::class,'searchMenager']);
+        Route::get('/search',[\App\Http\Controllers\MenagerController::class,'search']);
 
     });
 
@@ -117,10 +117,10 @@ Route::group(["prefix" => "personnels"], function(){
     Route::group(["prefix" => "nounous"], function(){
 
         /// Affiche la liste des nounous
-        Route::get('/',[\App\Http\Controllers\UserController::class,'NounouIndex']);
+        Route::get('/',[\App\Http\Controllers\NounouController::class,'index']);
 
         /// Affiche la page des nounous et liste ces derniers en fonction de la ville ou le quartier
-        Route::get('/search',[\App\Http\Controllers\UserController::class,'searchNounou']);
+        Route::get('/search',[\App\Http\Controllers\NounouController::class,'search']);
 
     });
 
