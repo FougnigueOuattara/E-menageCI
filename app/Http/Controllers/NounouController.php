@@ -17,13 +17,7 @@ class NounouController extends Controller
 
     public function index()
     {
-        $data = $this->nounouServiceData->getNounou();
-        return view('personnels_maison.nounou',['nounous'=>$data]);
-    }
-
-    public function search()
-    {
-        $data = $this->nounouServiceData->search();
-        return view('personnels_maison.nounou',['nounous'=>$data]);
+        $user_data = $this->nounouServiceData->getNounou();
+        return view('personnels_maison.nounou',['user_data'=>$user_data]);
     }
 }

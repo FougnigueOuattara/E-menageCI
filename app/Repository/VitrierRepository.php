@@ -13,16 +13,20 @@ class VitrierRepository implements UserFonctionnality
 
     public function getVitrier()
     {
-        return DB::table('users')->where('staff', '=', "Vitrier")->simplePaginate(15);
+        return DB::table('users')->where('staff', '=', "vitriers")->simplePaginate(15);
     }
 
     //Filter vitrier
 
-    public function search(Request $request)
+    public function search($data)
     {
-        return DB::table('users')->where('staff', '=', 'Vitrier')
-                                ->where(function(Builder $query) use ($request){
-                                    $query->where('city', '=', $request->input('search'))->orWhere('quarter', '=', $request->input('search'));
-                                })->simplePaginate(15);
+        return DB::table('users')->where('staff', '=', 'vitriers')
+    ->where(function(Builder $query) use ($data) {
+        $searchTerm = '%' . $data . '%';
+        $query->where('city', 'like', $searchTerm)
+              ->orWhere('quarter', 'like', $searchTerm);
+    })
+    ->simplePaginate(15);
+
     }
 }

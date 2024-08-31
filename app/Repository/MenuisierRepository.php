@@ -11,14 +11,18 @@ class MenuisierRepository implements UserFonctionnality
 {
     public function getMenuisier()
     {
-        return DB::table('users')->where('staff', '=', "Menuisier")->simplePaginate(15);
+        return DB::table('users')->where('staff', '=', "menuisiers")->simplePaginate(15);
     }
 
-    public function search(Request $request)
+    public function search($data)
     {
-        return DB::table('users')->where('staff', '=', 'Menuisier')
-                                ->where(function(Builder $query) use ($request){
-                                    $query->where('city', '=', $request->input('search'))->orWhere('quarter', '=', $request->input('search'));
-                                })->simplePaginate(15);
+        return DB::table('users')->where('staff', '=', 'menuisiers')
+    ->where(function(Builder $query) use ($data) {
+        $searchTerm = '%' . $data . '%';
+        $query->where('city', 'like', $searchTerm)
+              ->orWhere('quarter', 'like', $searchTerm);
+    })
+    ->simplePaginate(15);
+
     }
 }

@@ -17,13 +17,7 @@ class PlombierController extends Controller
 
     public function index()
     {
-        $data = $this->plomblierServiceData->getPlombier();
-        return view('personnels_batiment.plombier',['plombiers' => $data]);
-    }
-
-    public function search()
-    {
-        $data = $this->plomblierServiceData->search();
-        return view('personnels_batiment.plombier',['plombiers' => $data]);
+        $userdata = $this->plomblierServiceData->getPlombier();
+        return view('personnels_batiment.plombier',['userdata' => $userdata]);
     }
 }

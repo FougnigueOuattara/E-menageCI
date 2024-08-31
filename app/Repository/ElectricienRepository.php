@@ -13,17 +13,21 @@ class ElectricienRepository implements UserFonctionnality
 
     public function getElectricien()
     {
-        return DB::table('users')->where('staff', '=', "Electricien")->simplePaginate(15);
+        return DB::table('users')->where('staff', '=', "electriciens")->simplePaginate(15);
     }
 
     
     //Filter Electricien
 
-    public function search(Request $request)
+    public function search($data)
     {
-        return DB::table('users')->where('staff', '=', 'Electricien')
-                                ->where(function(Builder $query) use ($request){
-                                    $query->where('city', '=', $request->input('search'))->orWhere('quarter', '=', $request->input('search'));
-                                })->simplePaginate(15);
+        return DB::table('users')
+        ->where('staff', '=', 'electriciens')
+        ->where(function(Builder $query) use ($data) {
+            $searchTerm = '%' . $data . '%';
+            $query->where('city', 'like', $searchTerm)
+                  ->orWhere('quarter', 'like', $searchTerm);
+        })
+        ->simplePaginate(15);
     }
 }

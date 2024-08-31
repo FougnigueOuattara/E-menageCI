@@ -21,16 +21,10 @@ class VitrierController extends Controller
     public function index()
     {
 
-        $vitriers = $this->vitrierServiceData->getVitrier();
+        $user_data = $this->vitrierServiceData->getVitrier();
 
         return view('personnels_batiment.vitrier',[
-            'vitriers' => $vitriers
+            'user_data' => $user_data
             ]); 
-    }
-
-    public function search()
-    {
-        $data = $this->vitrierServiceData->search();
-        return view('personnels_batiment.vitrier',['vitriers'=>$data]);
     }
 }

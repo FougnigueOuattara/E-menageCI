@@ -21,8 +21,8 @@ class CuisinierService
         return $this->cuisinierRepositoryData->getCuisinier();
     }
 
-    public function search()
+    public function search($data)
     {
-        return $this->cuisinierRepositoryData->search($this->datasearch);
+        return $this->cuisinierRepositoryData->search($data);
     }
 }

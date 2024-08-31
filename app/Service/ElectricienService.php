@@ -21,8 +21,8 @@ class ElectricienService
         return $this->electricienRepositoryData->getElectricien();
     }
 
-    public function search()
+    public function search($data)
     {
-        return $this->electricienRepositoryData->search($this->datasearch);
+        return $this->electricienRepositoryData->search($data);
     }
 }

@@ -16,21 +16,10 @@ class ElectricienController extends Controller
     
     public function index()
     {
-        $data = $this->electricienServiceData->getElectricien();
+        $user_data = $this->electricienServiceData->getElectricien();
         
         return view('personnels_batiment.electricien',[
-            'electriciens' => $data
+            'user_data' => $user_data
         ]);
-    }
-
-
-    public function search()
-    {      
-        $data = $this->electricienServiceData->search();
-
-        return view('personnels_batiment.electricien',[
-            'electriciens' => $data
-        ]);
-    
     }
 }

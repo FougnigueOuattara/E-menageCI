@@ -17,13 +17,7 @@ class MenagerController extends Controller
 
     public function index()
     {
-        $data = $this->menagerServiceData->getMenager();
-        return view('personnels_maison.menager',['menagers'=>$data]);
-    }
-
-    public function search()
-    {
-        $data = $this->menagerServiceData->search();
-        return view('personnels_maison.menager',['menagers'=>$data]);
+        $user_data = $this->menagerServiceData->getMenager();
+        return view('personnels_maison.menager',['user_data'=>$user_data]);
     }
 }

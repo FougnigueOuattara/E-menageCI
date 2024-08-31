@@ -6,7 +6,13 @@ export default {
     './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'my-gray': '#F1F1F1',
+        'my-orange': '#ff9935'
+        // Ajoutez d'autres couleurs personnalisées selon vos besoins
+      },
+    },
   },
   plugins: [],
 }

@@ -17,13 +17,7 @@ class CuisinierController extends Controller
 
     public function index()
     {
-        $data = $this->cuisinierServiceData->getCuisinier();
-        return view('personnels_maison.cuisinier',['cuisiniers' => $data]);
-    }
-
-    public function search()
-    {
-        $data = $this->cuisinierServiceData->search();
-        return view('personnels_maison.cuisinier',['cuisiniers' => $data]);
+        $user_data = $this->cuisinierServiceData->getCuisinier();
+        return view('personnels_maison.cuisinier',['user_data' => $user_data]);
     }
 }

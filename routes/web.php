@@ -106,10 +106,10 @@ Route::group(["prefix" => "personnels"], function(){
     Route::group(["prefix" => "menagers"], function(){
 
         /// Affiche la liste des menagers
-        Route::get('/',[\App\Http\Controllers\MenagerController::class,'index']);
+        Route::get('/',[\App\Http\Controllers\MenagerController::class,'index'])->name('menagers.index');
 
         /// Affiche la page des menagers et liste ces derniers en fonction de la ville ou le quartier
-        Route::get('/search',[\App\Http\Controllers\MenagerController::class,'search']);
+        Route::get('/search',[\App\Http\Controllers\MenagerController::class,'search'])->name('search-menager.index');
 
     });
 
@@ -123,6 +123,10 @@ Route::group(["prefix" => "personnels"], function(){
         Route::get('/search',[\App\Http\Controllers\NounouController::class,'search']);
 
     });
+    
+    //Test de création des Vip
+
+    Route::get('/vip/create',[\App\Http\Controllers\UserController::class,'vipStatus']);
 
 });
 

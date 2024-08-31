@@ -17,14 +17,9 @@ class PeintreController extends Controller
 
     public function index()
     {
-        $data = $this->peintreServiceData->getPeintre();
+        $user_data = $this->peintreServiceData->getPeintre();
 
-        return view('personnels_batiment.peintre',['peintres' => $data ]); 
+        return view('personnels_batiment.peintre',['user_data' => $user_data ]); 
     } 
 
-    public function search()
-    {
-        $data = $this->peintreServiceData->search();
-        return view('personnels_batiment.peintre',['peintres' => $data ]);
-    }
 }

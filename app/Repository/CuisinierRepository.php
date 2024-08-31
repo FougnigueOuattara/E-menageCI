@@ -11,14 +11,19 @@ class CuisinierRepository implements UserFonctionnality
 {
     public function getCuisinier()
     {
-        return DB::table('users')->where('staff', '=', "Cuisinier")->simplePaginate(15);
+        return DB::table('users')->where('staff', '=', "cuisiniers")->simplePaginate(15);
     }
 
-    public function search(Request $request)
+    public function search($data)
     {
-        return DB::table('users')->where('staff', '=', 'Cuisinier')
-        ->where(function(Builder $query) use ($request){
-            $query->where('city', '=', $request->input('search'))->orWhere('quarter', '=', $request->input('search'));
-        })->simplePaginate(15);
+        return DB::table('users')
+    ->where('staff', '=', 'cuisiniers')
+    ->where(function(Builder $query) use ($data){
+        $searchTerm = '%' . $data . '%';
+        $query->where('city', 'like', $searchTerm)
+              ->orWhere('quarter', 'like', $searchTerm);
+    })
+    ->simplePaginate(15);
+
     }
 }

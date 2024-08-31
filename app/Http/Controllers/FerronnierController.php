@@ -17,13 +17,7 @@ class FerronnierController extends Controller
 
     public function index()
     {
-        $data = $this->ferronnierServiceData->getFerronnier();
-        return view('personnels_batiment.ferronnier',['ferronniers'=>$data]); 
-    }
-
-    public function search()
-    {
-        $data = $this->ferronnierServiceData->search();
-        return view('personnels_batiment.ferronnier',['ferronniers' => $data]);
+        $user_data = $this->ferronnierServiceData->getFerronnier();
+        return view('personnels_batiment.ferronnier',['user_data'=> $user_data]); 
     }
 }

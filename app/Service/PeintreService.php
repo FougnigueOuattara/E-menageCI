@@ -21,8 +21,8 @@ class PeintreService
         return $this->peintreRepositoryData->getPeintre();
     }
 
-    public function search()
+    public function search($data)
     {
-        return $this->peintreRepositoryData->search($this->datasearch);
+        return $this->peintreRepositoryData->search($data);
     }
 }

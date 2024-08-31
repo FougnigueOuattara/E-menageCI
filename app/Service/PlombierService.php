@@ -21,8 +21,8 @@ class PlombierService
         return $this->plombierRepositoryData->getPlombier();
     }
 
-    public function search()
+    public function search($data)
     {
-        return $this->plombierRepositoryData->search($this->datasearch);
+        return $this->plombierRepositoryData->search($data);
     }
 }

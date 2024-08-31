@@ -20,9 +20,9 @@ class VitrierService
         return $this->vitrierRepositoryData->getVitrier(); 
     }
 
-    public function search()
+    public function search($data)
     {
-        return $this->vitrierRepositoryData->search($this->datasearch);
+        return $this->vitrierRepositoryData->search($data);
     }
 
 }

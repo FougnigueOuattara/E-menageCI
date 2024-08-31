@@ -17,13 +17,8 @@ class MenuisierController extends Controller
 
     public function index()
     {
-        $data = $this->menuisierDataService->getMenuisier();
-        return view('personnels_batiment.menuisier',['menuisiers' => $data]);
+        $user_data = $this->menuisierDataService->getMenuisier();
+        return view('personnels_batiment.menuisier',['user_data' => $user_data]);
     }
 
-    public function search()
-    {
-        $data = $this->menuisierDataService->search();
-        return view('personnels_batiment.menuisier',['menuisiers' => $data]);
-    }
 }

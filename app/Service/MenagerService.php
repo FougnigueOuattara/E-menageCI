@@ -21,8 +21,8 @@ class MenagerService
         return $this->menagerRepositoryData->getMenager();
     }
 
-    public function search()
+    public function search($data)
     {
-        return $this->menagerRepositoryData->search($this->datasearch);
+        return $this->menagerRepositoryData->search($data);
     }
 }

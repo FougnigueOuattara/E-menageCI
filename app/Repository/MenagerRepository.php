@@ -11,14 +11,19 @@ class MenagerRepository implements UserFonctionnality
 {
     public function getMenager()
     {
-        return DB::table('users')->where('staff', '=', "Menager")->simplePaginate(15);
+        return DB::table('users')->where('staff', '=', "menagers")->simplePaginate(15);
     }
 
-    public function search(Request $request)
+    public function search($data)
     {
-        return DB::table('users')->where('staff', '=', 'Menager')
-                                ->where(function(Builder $query) use ($request){
-                                    $query->where('city', '=', $request->input('search'))->orWhere('quarter', '=', $request->input('search'));
-                                })->simplePaginate(15);
+        return DB::table('users')
+    ->where('staff', '=', 'menagers')
+    ->where(function(Builder $query) use ($data) {
+        $searchTerm = '%' . $data . '%';
+        $query->where('city', 'like', $searchTerm)
+              ->orWhere('quarter', 'like', $searchTerm);
+    })
+    ->simplePaginate(15);
+
     }
 }

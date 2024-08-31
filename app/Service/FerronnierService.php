@@ -21,8 +21,8 @@ class FerronnierService
         return $this->ferronnierRepositoryData->getFerronnier();
     }
 
-    public function search()
+    public function search($data)
     {
-        return $this->ferronnierRepositoryData->search($this->datasearch);
+        return $this->ferronnierRepositoryData->search($data);
     }
 }

@@ -22,8 +22,8 @@ class NounouService
         return $this->nounouRepositoryData->getNounou();
     }
 
-    public function search()
+    public function search($data)
     {
-        return $this->nounouRepositoryData->search($this->datasearch);
+        return $this->nounouRepositoryData->search($data);
     }
 }

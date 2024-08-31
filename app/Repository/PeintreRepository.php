@@ -11,15 +11,19 @@ class PeintreRepository implements UserFonctionnality
 {
     public function getPeintre()
     {
-        return DB::table('users')->where('staff', '=', "Peintre")->simplePaginate(15);
+        return DB::table('users')->leftJoin('user_statuts', 'users.id', '=', 'user_statuts.user_id')->where('staff', '=', "peintres")->orWhere('user_statuts.vip', '=', "Actif")->orderBy('user_statuts.created_at','desc')->simplePaginate(15);
     }
 
-    public function search(Request $request)
+    public function search($data)
     {
-        return DB::table('users')->where('staff', '=', 'Peintre')
-        ->where(function(Builder $query) use ($request){
-            $query->where('city', '=', $request->input('search'))->orWhere('quarter', '=', $request->input('search'));
-        })->simplePaginate(15);
+        return DB::table('users')->where('staff', '=', 'peintres')
+    ->where(function($query) use ($data) {
+        $searchTerm = '%' . $data . '%';
+        $query->where('city', 'like', $searchTerm)
+              ->orWhere('quarter', 'like', $searchTerm);
+    })
+    ->simplePaginate(15);
+
     }
 
 }

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User as User;
-use Illuminate\Contracts\View\View;
-use App\Http\Requests\UserRequest;
-use Illuminate\Database\Query\Builder;
-use Ramsey\Uuid\Uuid;
+use App\Service\MetierService;
+use App\Service\UserService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,45 +11,39 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    private $userService;
+    private $metierService;
+
+    public function __construct(UserService $userService, MetierService $metierService)
+    {
+        $this->userService = $userService;
+        $this->metierService = $metierService;
+    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-      
-        return view('formulaire-inscription');
+        $metier = $this->metierService->getAllMetier();
+
+        return view('formulaire-inscription', ['metiers'=>$metier]);
       
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
+        $result = $this->userService->userRegister();   
 
-        $file = $request->file('picture');
-        $path = $file->store('profil','public');
-
-        DB::table('users')->insert(
-            [   'id'=>Uuid::uuid4(),
-                'firstName'=>$request->input('firstname'),
-                'lastName'=>$request->input('name'),
-                'email'=>$request->input('email'),
-                'age'=>$request->input('age'),
-                'gender'=>$request->input('genre'),
-                'phoneNumber'=>$request->input('number'),
-                'city'=>$request->input('city'),
-                'quarter'=>$request->input('quarter'),
-                'photo'=>$path,
-                'staff'=>$request->input('work'),
-                'etat'=> true,
-                'password'=>Hash::make($request->input('password')),
-                'created_at' => now()
-            ]
-        );
-        
-    return redirect('/');
+        if($result)
+        {
+            return redirect("/")->with('success','Vous avez bien été enregistré !');
+        }else{
+            return redirect("/")->with("Quelque chose s'est mal passé");
+        }
     }
 
     /**
@@ -92,7 +84,7 @@ class UserController extends Controller
             $user->save();
             User::search();
         
-            return redirect()->back()->with('success', 'Informations mises à jour avec succès.');
+            return redirect('/')->with('success', 'Informations mises à jour avec succès.');
         }else{
             
             $user = User::find(Auth::user()->id);
@@ -106,6 +98,17 @@ class UserController extends Controller
             return redirect()->back()->with('success', 'Informations mises à jour avec succès.');
         }
 
+    }
+
+    public function vipStatus()
+    {
+        $result = DB::table('user_statuts')->insert(
+            [
+                "user_id" => Auth::user()->id,
+                "vip" => "Actif",
+                'created_at' => now()
+            ]
+        );
     }
 
     /**

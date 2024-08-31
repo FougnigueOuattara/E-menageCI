@@ -21,8 +21,8 @@ class MenuisierService
         return $this->menuisierRepositoryData->getMenuisier();
     }
 
-    public function search()
+    public function search($data)
     {
-        return $this->menuisierRepositoryData->search($this->datasearch);
+        return $this->menuisierRepositoryData->search($data);
     }
 }
