@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -52,8 +53,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function status():HasOne
+    public function status(): HasOne
     {
         return $this->hasOne(UserStatut::class);
+    }
+    // Notes que l'utilisateur a données
+    public function givenRatings(): HasMany
+    {
+        return $this->hasMany(Evaluation::class, 'evaluator_id');
+    }
+
+    // Notes que l'utilisateur a reçues
+    public function receivedRatings(): HasMany
+    {
+        return $this->hasMany(Evaluation::class, 'evaluated_id');
+    }
+
+    // Calcul de la note moyenne reçue
+    public function averageRating()
+    {
+        return $this->receivedRatings()->avg('note');
+    }
+
+    // Nombre total de notes reçues
+    public function ratingsCount()
+    {
+        return $this->receivedRatings()->count();
     }
 }
