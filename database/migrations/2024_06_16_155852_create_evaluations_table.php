@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unique(['evaluator_id', 'evaluated_id']);// Pour éviter les évaluations multiples du même utilisateur
             $table->foreignId('evaluated_id')->nullable()->constrained('users')->onDelete('cascade'); // User evaluated
             $table->foreignId('evaluator_id')->nullable()->constrained('users')->onDelete('cascade'); // User evaluator
-            $table->string('comments')->nullable()->constrained();
-            $table->integer("note")->nullable(); // Evaluation
+            $table->string('comments')->nullable();
+            $table->double("note")->nullable(); // Evaluation
             $table->timestamps();
         });
     }

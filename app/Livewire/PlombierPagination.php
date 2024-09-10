@@ -15,8 +15,11 @@ class PlombierPagination extends Component
 
     public function render(PlombierService  $plomblierServiceData)
     {
+        //$user = User::all();
+        //$averageRating = $user->averageRating();
+        //$averageRating = round($averageRating, 1); // Arrondir à une décimale
         $this->plomblierServiceData = $plomblierServiceData;
         $userdata = $this->plomblierServiceData->search($this->search);
-        return view('livewire.plombier-pagination',["userdata"=>$userdata]);
+        return view('livewire.plombier-pagination', ["userdata" => $userdata]);
     }
 }

@@ -17,12 +17,18 @@ class PlombierRepository implements UserFonctionnality
 
     public function search($data)
     {
-        return DB::table('users')->where('staff', 'plombiers')
-        ->where(function($query) use ($data) {
-            $searchTerm = '%' . $data . '%';
-            $query->where('city', 'like', $searchTerm)
-                  ->orWhere('quarter', 'like', $searchTerm);
-        })
-        ->simplePaginate(15);
+        return DB::table('users')
+    ->leftJoin('evaluations', 'users.id', '=', 'evaluations.evaluated_id') // Jointure sur la table evaluations
+    ->where('users.staff', 'plombiers')
+    ->where(function($query) use ($data) {
+        $searchTerm = '%' . $data . '%';
+        $query->where('users.city', 'like', $searchTerm)
+              ->orWhere('users.quarter', 'like', $searchTerm);
+    })
+    ->select('users.*', DB::raw('AVG(evaluations.note) as average_note')) // Calcul de la moyenne des notes
+    ->groupBy('users.id') // Groupement par utilisateur pour calculer la moyenne des notes
+    ->simplePaginate(15);
+
+
     }
 }
