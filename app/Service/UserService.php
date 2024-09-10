@@ -11,10 +11,15 @@ class UserService
     private $userRepository;
     private $user_data;
 
-    public function __construct(UserRepository $userRepository,Request $user_data)
+    public function __construct(UserRepository $userRepository, Request $user_data)
     {
         $this->userRepository = $userRepository;
         $this->user_data = $user_data;
+    }
+
+    public function getOneUser($id)
+    {
+        return $this->userRepository->fetchOneUser($id);
     }
 
     public function userRegister()

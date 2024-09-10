@@ -46,4 +46,8 @@ class UserRepository
 
         return $user;
     }
+    public function fetchOneUser($id)
+    {
+        return User::find($id);
+    }
 }

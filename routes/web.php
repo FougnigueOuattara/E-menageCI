@@ -52,7 +52,8 @@ Route::group(["prefix" => "personnels"], function(){
 
         /// Affiche la liste des plombiers
         Route::get('/',[\App\Http\Controllers\PlombierController::class,'index']);
-
+        /// Affiche les détails d'un plombiers
+        Route::get('/details/{id}',[\App\Http\Controllers\PlombierController::class,'details'])->name("plombier.details");
         /// Affiche la page des plombiers et liste ces derniers en fonction de la ville ou le quartier
         Route::get('/search',[\App\Http\Controllers\PlombierController::class,'search']);
 
@@ -63,7 +64,8 @@ Route::group(["prefix" => "personnels"], function(){
 
         /// Affiche la liste des ferronniers
         Route::get('/',[\App\Http\Controllers\FerronnierController::class,'index']);
-
+        /// Affiche les détails d'un plombiers
+        Route::get('/details/{id}',[\App\Http\Controllers\FerronnierController::class,'details'])->name("ferronniers.details");
         /// Affiche la page des ferronniers et liste ces derniers en fonction de la ville ou le quartier
         Route::get('/search',[\App\Http\Controllers\FerronnierController::class,'search']);
 
@@ -123,7 +125,7 @@ Route::group(["prefix" => "personnels"], function(){
         Route::get('/search',[\App\Http\Controllers\NounouController::class,'search']);
 
     });
-    
+
     //Test de création des Vip
 
     Route::get('/vip/create',[\App\Http\Controllers\UserController::class,'vipStatus']);
@@ -145,16 +147,16 @@ Route::group(["prefix" => "users"], function(){
 
     //Renvoie le formulaire d'inscription
     Route::get('/inscription',[\App\Http\Controllers\UserController::class,'create']);
-    
+
     //Enregistre un utilisateur
     Route::post('/inscription',[\App\Http\Controllers\UserController::class,'store']);
-    
+
     //Se charge de loguer l'utilisateur
     Route::post('/login',[\App\Http\Controllers\LoginController::class,'authenticate']);
 
     //Modifie le profile utilisateur
     Route::post('/profile',[\App\Http\Controllers\UserController::class,'update']);
-    
+
 
 });
 

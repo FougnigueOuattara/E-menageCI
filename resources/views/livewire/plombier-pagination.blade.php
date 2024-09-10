@@ -5,7 +5,7 @@
     <p class=" pl-4 mb-6 bg-gray-300 font-medium text-xl ">Toutes les annonces</p>
     @if (!$userdata->isEmpty())
         @foreach ($userdata as $data)
-            <a class="cursor-pointer w-full" href="/{{$data->staff}}/descriptions">
+            <a class="cursor-pointer w-full" href="{{route('plombier.details',['id'=>$data->id])}}">
                 <div class="flex h-20 w-full items-center shadow-sm">
                     <div class="rounded-2xl h-full p-2 w-1/3">
                         <img class="h-full rounded-2xl w-full object-cover object-center" src="{{asset('storage/'.$data->photo)}}">
