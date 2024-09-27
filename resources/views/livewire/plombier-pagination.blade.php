@@ -7,13 +7,16 @@
         @foreach ($userdata as $data)
             <a class="cursor-pointer w-full my-8" href="{{route('plombier.details',['id'=>$data->id])}}">
                 <div class="flex h-24 w-full items-center shadow-sm">
-                    <div class="rounded-full h-full p-3 w-auto">
+                    <div class="rounded-full h-full p-2 w-auto">
                         <img class="rounded-full w-20 h-full md:round object-cover object-center" src="{{asset('storage/profil/'.$data->photo)}}">
                     </div>
                     <div class="pl-4 h-full flex flex-col justify-start w-2/3">
                         <div class="flex flex-col justify-evenly h-full">
                             <div>
-                                <p class="font-medium"><?= $data->lastName ?> <?= $data->firstName ?> </p>
+                                <div class="flex items-center justify-between">
+                                    <p class="font-medium"><?= $data->lastName ?> <?= $data->firstName ?> </p>
+                                    <img class="h-5" src="{{asset('storage/icone/approved.png')}}" alt="verify badge">
+                                </div>
                                 <p class="text-xs text-gray-500 flex items-center">
                                     <svg class="h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#f77d3b" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
                                     <?= $data->quarter ?> <?= $data->city ?>
