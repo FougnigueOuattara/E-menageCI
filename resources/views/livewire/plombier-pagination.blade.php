@@ -1,14 +1,22 @@
-<div class="justify-center border-gray-300 min-h-[60vh]">
+<div class="justify-center border-gray-300 min-h-[60vh] mb-10">
     <div class="w-full h-44 flex justify-around items-end pb-5">
         <input wire:model.live="search" type="text" class="rounded-3xl shadow-sm h-10 w-11/12 placeholder:pl-4 bg-white outline-slate-300" name="search" placeholder="Rechercher par ville ou quartier">
     </div>
-    <div class="flex items-center justify-between">
-        <p class="pl-4 mb-6 bg-gray-300 font-medium text-xl">Toutes les annonces</p>
+    <div class="flex items-center justify-between px-4 py-6">
+        <div class="px-2 py-1 bg-slate-200 rounded-md text-lg font-medium text-slate-500 w-auto">
+            Plomberie
+        </div>
+        <div class="flex items-center justify-between bg-gray-200 ring-1 p-1 h-auto rounded ring-gray-300 border-gray-400 w-1/6 text-center">
+            <span class="text-slate-500">Trier</span>
+            <svg class="w-4 h-4 text-slate-500 dark:text-slate-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M5 13.17a3.001 3.001 0 0 0 0 5.66V20a1 1 0 1 0 2 0v-1.17a3.001 3.001 0 0 0 0-5.66V4a1 1 0 0 0-2 0v9.17ZM11 20v-9.17a3.001 3.001 0 0 1 0-5.66V4a1 1 0 1 1 2 0v1.17a3.001 3.001 0 0 1 0 5.66V20a1 1 0 1 1-2 0Zm6-1.17V20a1 1 0 1 0 2 0v-1.17a3.001 3.001 0 0 0 0-5.66V4a1 1 0 1 0-2 0v9.17a3.001 3.001 0 0 0 0 5.66Z"/>
+            </svg>              
+        </div>
     </div>
     
     @if (!$userdata->isEmpty())
         @foreach ($userdata as $data)
-            <a class="cursor-pointer w-full my-8" href="{{route('plombier.details',['id'=>$data->id])}}">
+            <a class="cursor-pointer w-full" href="{{route('plombier.details',['id'=>$data->id])}}">
                 <div class="flex h-24 w-full items-center shadow-sm">
                     <div class="rounded-full h-full p-2 w-auto">
                         <img class="rounded-full w-20 h-full md:round object-cover object-center" src="{{asset('storage/profil/'.$data->photo)}}">
@@ -44,7 +52,7 @@
                                         <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M12 .587l3.668 7.431L24 9.751l-6 5.841 1.42 8.281L12 18.896l-7.42 4.977L6 15.592 0 9.751l8.332-1.733L12 .587z"/>
                                         </svg>
-                                    @endif
+                                    @endif 
                                 @endfor
                             </div>
                         </div>

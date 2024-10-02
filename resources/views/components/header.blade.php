@@ -40,7 +40,7 @@
                                     class="relative"
                                 >
                                     <!-- Dropdown -->
-                                    <li class="mx-3 cursor-pointer xl:text-xl text-center text-white" x-ref="button"
+                                    <li class="border-b border-gray-200 mx-3 cursor-pointer xl:text-xl text-center text-white" x-ref="button"
                                         x-on:click="toggle()"
                                         :aria-expanded="open"
                                         :aria-controls="$id('dropdown-button')">
@@ -208,7 +208,7 @@
                 </div>
             </div>
         </nav>
-        <div class="relative border-t border-slate-800 lg:hidden -bottom-0 transition-[height] duration-700 bg-slate-900" :class="open ? ['transition-[height]','duration-700', 'h-[30vh]'] : 'h-[0vh]' ">
+        <div class="relative border-t border-slate-800 lg:hidden -bottom-0 transition-[height] duration-700 bg-slate-900" :class="open ? ['transition-[height]','duration-700', 'h-[20vh]'] : 'h-[0vh]' ">
             <div class="w-full h-full flex flex-col items-center justify-evenly">
                 <!-- dropdown pour personnel batiment-->
                 <div>
@@ -233,11 +233,11 @@
     
                                         focusAfter && focusAfter.focus()
                                     }
-                                }"
+                                }" 
                                 x-on:keydown.escape.prevent.stop="close($refs.button)"
                                 x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
                                 x-id="['dropdown-button']"
-                                class="relative"
+                                class="relative "
                             >
                                 <!-- Dropdown -->
                                 <li class="mx-3 cursor-pointer text-center text-white" x-ref="button"
@@ -281,7 +281,7 @@
                         </div>
                     </ul>
                 </div>
-                <!-- fin dropdown pour personnel batiment-->
+                <!-- fin dropdown pour personnel maison-->
                 <div>
                     <ul class="justify- list-none items-center transition-all duration-700 w-full" :class="open ? ['flex','transition-all', 'duration-700'] : ['hidden','transition-all', 'duration-700'] ">
                         <!-- dropdown pour personnel maison-->
