@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Repository;
 use App\Models\Evaluation;
 
 class EvaluationRepository

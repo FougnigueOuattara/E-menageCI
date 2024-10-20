@@ -27,7 +27,7 @@ class PlombierController extends Controller
 
     public function details($id)
     {
-        $data = $this->userServiceData->getOneUser($id);
+        $data = $this->userServiceData->getOneUser($id); 
         return view('personnels_batiment.description',["plombier"=>$data]);
     }
 }

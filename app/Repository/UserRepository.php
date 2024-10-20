@@ -47,7 +47,10 @@ class UserRepository
         return $user;
     }
     public function fetchOneUser($id)
-    {
-        return User::find($id);
+    {           
+        // Récupère l'utilisateur avec ses évaluations et la moyenne des notes reçues
+        return User::with('receivedRatings') // Charge les évaluations
+               ->withAvg('receivedRatings', 'note') // Calcule la moyenne des notes dans la relation
+               ->findOrFail($id); // Trouver l'utilisateur par son ID
     }
 }

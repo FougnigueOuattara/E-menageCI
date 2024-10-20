@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Service;
+
 class EvaluationService
 {
     protected $evaluationRepository;
